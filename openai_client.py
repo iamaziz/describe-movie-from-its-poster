@@ -4,7 +4,7 @@ class OpenAIClient():
     def __init__(self) -> None:
         self.client = OpenAI() # assumes you have the OPENAI_API_KEY set in your environment
 
-    def chat (self, messages, model="gpt-3.5-turbo"):
+    def chat(self, messages, model="gpt-3.5-turbo"):
         return self.client.chat.completions.create(messages=messages, model=model)
 
     def get_embedding(self, text: str,  model="text-embedding-ada-002") -> list[float]:

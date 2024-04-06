@@ -2,6 +2,8 @@
 
 <p align="center"><img src="logo.png" width="500" /></p>
 
+> What
+
 An app to search for a movie and get a description of what the movie poster tells about the plot.
 
 > Event
