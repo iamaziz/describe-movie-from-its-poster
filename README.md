@@ -24,8 +24,8 @@ An app to search for a movie and get a description of what the movie poster tell
 
 ## Setup
 
-> Edit `atlas_client.py` to add the corresponding MongoDB settings
-> Add `OPENAI_KEY_API` to environment variables
+> - Edit `atlas_client.py` to add the corresponding MongoDB settings
+> - Add `OPENAI_KEY_API` to environment variables
 
  ## Getting Started
 
