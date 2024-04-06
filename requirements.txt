@@ -1,0 +1,9 @@
+openai==1.16.2
+pandas==2.2.1
+plotly-express==0.4.1
+pymongo[srv]==4.6.3
+streamlit==1.33.0
+streamlit-agraph==0.0.45
+streamlit-image-select==0.6.0
+umap-learn==0.5.6
+requests==2.31.0

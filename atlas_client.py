@@ -1,0 +1,67 @@
+from pymongo import MongoClient
+
+# mongodb atlas settings. Source: https://github.com/sujee/mongodb-atlas-vector-search/blob/main/AtlasClient.py
+atlas_uri = 'mongodb+srv://<USERNAME>:<PASSWORD>@cluster0.boqgjmu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+COLLECTION_NAME = 'embedded_movies'
+INDEX_NAME = 'idx_plot_embedding'
+DB_NAME = 'sample_mflix'
+ATTR_NAME = 'plot_embedding'
+
+
+class AtlasClient ():
+
+    def __init__ (self, altas_uri=atlas_uri, dbname=DB_NAME):
+        self.mongodb_client = MongoClient(altas_uri)
+        self.database = self.mongodb_client[dbname]
+
+    ## A quick way to test if we can connect to Atlas instance
+    def ping (self):
+        self.mongodb_client.admin.command('ping')
+
+    def get_collection (self, collection_name):
+        collection = self.database[collection_name]
+        return collection
+
+    def find (self, collection_name, filter = {}, limit=10):
+        collection = self.database[collection_name]
+        items = list(collection.find(filter=filter, limit=limit))
+        return items
+
+    # https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-stage/
+    def vector_search(self, embedding_vector, collection_name=COLLECTION_NAME, index_name=INDEX_NAME, attr_name=ATTR_NAME, limit=5):
+        collection = self.database[collection_name]
+        results = collection.aggregate([
+            {
+                '$vectorSearch': {
+                    "index": index_name,
+                    "path": attr_name,
+                    "queryVector": embedding_vector,
+                    "numCandidates": 50,
+                    "limit": limit,
+                }
+            },
+            ## We are extracting 'vectorSearchScore', columns with 1 are included, columns with 0 are excluded
+            {
+                "$project": {
+                    '_id' : 0,
+                    'title' : 1,
+                    'year' : 1,
+                    'plot' : 1,
+                    'fullplot' : 1,
+                    'cast' : 1,
+                    'directors' : 1,
+                    'writers' : 1,
+                    'countries' : 1,
+                    'genres' : 1,
+                    'tomatoes' : 1,
+                    'language' : 1,
+                    'poster' : 1,
+                    'plot_embedding' : 1,
+                    "search_score": { "$meta": "vectorSearchScore" }
+                    }
+            }
+            ])
+        return list(results)
+
+    def close_connection(self):
+        self.mongodb_client.close()
