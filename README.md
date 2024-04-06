@@ -20,8 +20,7 @@ An app to search for a movie and get a description of what the movie poster tell
 
 # Demo
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/elXIyfNfdC8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+[![Demo](http://img.youtube.com/vi/elXIyfNfdC8/0.jpg)](http://www.youtube.com/watch?v=elXIyfNfdC8?si=HDFgKoeskBmilt9L)
 
 ## Setup
 
