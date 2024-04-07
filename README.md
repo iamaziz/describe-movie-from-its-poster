@@ -19,6 +19,10 @@ An app to search for a movie and get a description of what the movie poster tell
 - UMAP projections (embeddings dimensionality reduction)
 - Plotly Express (3D projection visualization)
 
+# Screenshot
+
+<img width="1429" alt="image" src="https://github.com/iamaziz/describe-movie-from-its-poster/assets/3298308/a0646673-633e-4d7b-90bc-b9f01f80e2bd">
+
 
 # Demo
 
@@ -34,7 +38,7 @@ An app to search for a movie and get a description of what the movie poster tell
  Install requirements:
 
 ```bash
-pip instal -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Run the app
